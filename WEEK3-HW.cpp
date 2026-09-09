@@ -1,186 +1,186 @@
 #include <iostream>
 #include <string>
 
-// // 1. Node structure storing student information
-// struct Node
-// {
-//     int id;
-//     std::string name;
-//     std::string major;
-//     Node *next;
-// };
-// Node *head = nullptr;
+// 1. Node structure storing student information
+struct Node
+{
+    int id;
+    std::string name;
+    std::string major;
+    Node *next;
+};
+Node *head = nullptr;
 
-// // 2. Insert at the Beginning
-// void insertAtBeginning(int ID, std::string name, std::string major)
-// {
-//     Node *newNode = new Node();
-//     newNode->id = ID;
-//     newNode->name = name;
-//     newNode->major = major;
-//     newNode->next = head;
-//     head = newNode;
-// }
+// 2. Insert at the Beginning
+void insertAtBeginning(int ID, std::string name, std::string major)
+{
+    Node *newNode = new Node();
+    newNode->id = ID;
+    newNode->name = name;
+    newNode->major = major;
+    newNode->next = head;
+    head = newNode;
+}
 
-// // 3. Count Nodes
-// int count()
-// {
-//     int Count = 0;
-//     Node *current = head;
-//     while (current != nullptr)
-//     {
-//         Count++;
-//         current = current->next;
-//     }
-//     return Count;
-// }
+// 3. Count Nodes
+int count()
+{
+    int Count = 0;
+    Node *current = head;
+    while (current != nullptr)
+    {
+        Count++;
+        current = current->next;
+    }
+    return Count;
+}
 
-// // 4. Search for a Value
-// bool search(int ID)
-// {
-//     Node *current = head;
-//     while (current != nullptr)
-//     {
-//         if (current->id == ID)
-//         {
-//             return true;
-//         }
-//         current = current->next;
-//     }
-//     return false;
-// }
+// 4. Search for a Value
+bool search(int ID)
+{
+    Node *current = head;
+    while (current != nullptr)
+    {
+        if (current->id == ID)
+        {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
 
-// // 5. Delete element from the beginning
-// bool deleteAtFirst()
-// {
-//     if (head == nullptr)
-//     {
-//         return false;
-//     }
-//     Node *temp = head;
-//     head = head->next;
-//     delete temp;
-//     return true;
-// }
-// // BONUS
+// 5. Delete element from the beginning
+bool deleteAtFirst()
+{
+    if (head == nullptr)
+    {
+        return false;
+    }
+    Node *temp = head;
+    head = head->next;
+    delete temp;
+    return true;
+}
+// BONUS
 
-// // a: Delete at the end of the list
-// bool deleteAtEnd()
-// {
-//     if (head == nullptr)
-//     {
-//         return false;
-//     }
-//     if (head->next == nullptr)
-//     {
-//         delete head;
-//         head = nullptr;
-//         return true;
-//     }
-//     Node *current = head;
-//     while (current->next->next != nullptr)
-//     {
-//         current = current->next;
-//     }
+// a: Delete at the end of the list
+bool deleteAtEnd()
+{
+    if (head == nullptr)
+    {
+        return false;
+    }
+    if (head->next == nullptr)
+    {
+        delete head;
+        head = nullptr;
+        return true;
+    }
+    Node *current = head;
+    while (current->next->next != nullptr)
+    {
+        current = current->next;
+    }
 
-//     delete current->next;
-//     current->next = nullptr;
-//     return true;
-// }
+    delete current->next;
+    current->next = nullptr;
+    return true;
+}
 
-// // b: Delete a specific element in the list
-// bool deleteSpecific(int ID)
-// {
-//     if (head == nullptr)
-//     {
-//         return false;
-//     }
-//     if (head->id == ID)
-//     {
-//         return deleteAtFirst();
-//     }
-//     Node *current = head;
-//     while (current->next != nullptr && current->next->id != ID)
-//     {
-//         current = current->next;
-//     }
-//     if (current->next == nullptr)
-//     {
-//         return false;
-//     }
+// b: Delete a specific element in the list
+bool deleteSpecific(int ID)
+{
+    if (head == nullptr)
+    {
+        return false;
+    }
+    if (head->id == ID)
+    {
+        return deleteAtFirst();
+    }
+    Node *current = head;
+    while (current->next != nullptr && current->next->id != ID)
+    {
+        current = current->next;
+    }
+    if (current->next == nullptr)
+    {
+        return false;
+    }
 
-//     Node *temp = current->next;
-//     current->next = current->next->next;
-//     delete temp;
-//     return true;
-// }
+    Node *temp = current->next;
+    current->next = current->next->next;
+    delete temp;
+    return true;
+}
 
-// //c: Clear the list (delete all data)
-// void clearList()
-// {
-//     while (head != nullptr)
-//     {
-//         deleteAtFirst();
-//     }
-// }
+//c: Clear the list (delete all data)
+void clearList()
+{
+    while (head != nullptr)
+    {
+        deleteAtFirst();
+    }
+}
 
-// void printList()
-// {
-//     Node *current = head;
-//     if (current == nullptr)
-//     {
-//         std::cout << "This list is empty";
-//         return;
-//     }
-//     while (current != nullptr)
-//     {
-//         std::cout << "ID: " << current->id<< " | Name: " << current->name<< " | Major: " << current->major << "\n";
-//         current = current->next;
-//     }
-// }
-// int main()
-// {
-//     // 2. Test insertAtBeginning
-//     insertAtBeginning(101, "Heang", "CS");
-//     insertAtBeginning(102, "Thanuth", "SE");
-//     insertAtBeginning(103, "Pheng", "Data Science");
-//     insertAtBeginning(104, "Dara", "TNE");
-//     printList();
+void printList()
+{
+    Node *current = head;
+    if (current == nullptr)
+    {
+        std::cout << "This list is empty";
+        return;
+    }
+    while (current != nullptr)
+    {
+        std::cout << "ID: " << current->id<< " | Name: " << current->name<< " | Major: " << current->major << "\n";
+        current = current->next;
+    }
+}
+int main()
+{
+    // 2. Test insertAtBeginning
+    insertAtBeginning(101, "Heang", "CS");
+    insertAtBeginning(102, "Thanuth", "SE");
+    insertAtBeginning(103, "Pheng", "Data Science");
+    insertAtBeginning(104, "Dara", "TNE");
+    printList();
 
-//     // 3. Test count
-//     std::cout << "\nTotal students: " << count() << "\n\n";
+    // 3. Test count
+    std::cout << "\nTotal students: " << count() << "\n\n";
 
-//     // 4. Test search
-//     std::cout << "Search ID 101 " << (search(101) ? "Found" : "Not Found") << "\n";
-//     std::cout << "Search ID 102: " << (search(102) ? "Found" : "Not Found") << "\n";
-//     std::cout << "Search ID 102: " << (search(103) ? "Found" : "Not Found") << "\n";
-//     std::cout << "Search ID 104: " << (search(104) ? "Found" : "Not Found") << "\n";
-//     std::cout << "Search ID 105: " << (search(105) ? "Found" : "Not Found") << "\n\n";
+    // 4. Test search
+    std::cout << "Search ID 101 " << (search(101) ? "Found" : "Not Found") << "\n";
+    std::cout << "Search ID 102: " << (search(102) ? "Found" : "Not Found") << "\n";
+    std::cout << "Search ID 102: " << (search(103) ? "Found" : "Not Found") << "\n";
+    std::cout << "Search ID 104: " << (search(104) ? "Found" : "Not Found") << "\n";
+    std::cout << "Search ID 105: " << (search(105) ? "Found" : "Not Found") << "\n\n";
 
-//     // 5. Test deleteAtFirst
-//     if (deleteAtFirst())
-//     {
-//         std::cout << "Deleted successfully.\n";
-//     }
-//     std::cout << "List after deletion:\n";
-//     printList();
-//     std::cout << "New student count: " << count() << "\n";
+    // 5. Test deleteAtFirst
+    if (deleteAtFirst())
+    {
+        std::cout << "Deleted successfully.\n";
+    }
+    std::cout << "List after deletion:\n";
+    printList();
+    std::cout << "New student count: " << count() << "\n";
 
-//     // Bonus Work: 
-//     std::cout << "\nBonus a: Delete at End \n";
-//     deleteAtEnd(); // Removes 101
-//     printList();
+    // Bonus Work: 
+    std::cout << "\nBonus a: Delete at End \n";
+    deleteAtEnd(); // Removes 101
+    printList();
 
-//     std::cout << "\n Bonus b: Delete Specific (103)\n";
-//     deleteSpecific(103); // Removes 103
-//     printList();
+    std::cout << "\n Bonus b: Delete Specific (103)\n";
+    deleteSpecific(103); // Removes 103
+    printList();
 
-//     std::cout << "\nBonus c: Clear List\n";
-//     clearList();
-//     printList();
+    std::cout << "\nBonus c: Clear List\n";
+    clearList();
+    printList();
 
-//     return 0;
-// }
+    return 0;
+}
 
 // PART 2: DOUBLY LINK LIST
 
